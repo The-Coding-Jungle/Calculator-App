@@ -38,13 +38,10 @@ class SimpleCalculator(QWidget):
     
         self.lineEdit = QLineEdit()
         
-        #self.lineEdit.resize((self.size[0]), ((3*self.size[1])//10))
         layout.addWidget(self.lineEdit)
 
         self.buttonsWidget = QWidget()
         
-        #self.buttonsWidget.resize((self.size[0]), ((7*self.size[1])//10))
-
         buttonsLayout = QGridLayout()
         self.buttonsWidget.setLayout(buttonsLayout)
 
