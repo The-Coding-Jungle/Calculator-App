@@ -32,6 +32,19 @@ class SimpleCalculator(QWidget):
         self.historyArray = historyArray
         self.size = size
 
+    def goBackInHistory(self):
+        if len(self.historyArray) == 0:
+            self.lineEdit.setText('')
+        else:
+            toSet = self.historyArray.pop()
+            self.lineEdit.setText(toSet)
+
+    def solve(self):
+        q = self.lineEdit.text()
+        a = str(eval(q))
+        self.historyArray.append(q)
+        self.lineEdit.setText(a)
+
     def initUI(self) -> None:
         layout = QVBoxLayout()
         self.setLayout(layout)
@@ -73,7 +86,7 @@ class SimpleCalculator(QWidget):
         self.buttons[1][4].clicked.connect(lambda : self.lineEdit.setText(self.lineEdit.text() + '**2'))
 
         # Giving function to 'Go back button'.
-        self.buttons[2][4].clicked.connect(lambda : self.lineEdit.setText(self.historyArray[-1][0]))
+        self.buttons[2][4].clicked.connect(lambda : self.goBackInHistory())
 
         # Giving function to '=' button
-        self.buttons[3][4].clicked.connect(lambda : self.lineEdit.setText(str(eval (self.lineEdit.text()))))
+        self.buttons[3][4].clicked.connect(lambda : self.solve())
