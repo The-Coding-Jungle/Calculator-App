@@ -45,8 +45,8 @@ class MainWindow(QMainWindow):
         layout = QVBoxLayout()
         self.mainWid.setLayout(layout)
 
-        self.simpleCalculatorWidget = SimpleCalculator(self.historyArray, size)
-        self.advancedCalculatorWidget = AdvancedCalculator(self.historyArray, size)
+        self.simpleCalculatorWidget = SimpleCalculator(self.historyArray)
+        self.advancedCalculatorWidget = AdvancedCalculator(self.historyArray)
 
         layout.addWidget(self.simpleCalculatorWidget)
         layout.addWidget(self.advancedCalculatorWidget)

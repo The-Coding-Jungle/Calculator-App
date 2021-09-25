@@ -22,28 +22,35 @@ IS_SPECIAL_BUTTON = [
     [False, False, False, False, True],
     [False, False, False, False, True],
     [False, False, False, False, True],
-    [False, False, False, False, True]
+    [False, False, True, False, True]
 ]
 
 class SimpleCalculator(QWidget):
-    def __init__(self, historyArray:List[List[str]], size: List[int]):
+    def __init__(self, historyArray:List[List[str]]) -> None:
         super().__init__()
         self.initUI()
         self.historyArray = historyArray
-        self.size = size
 
-    def goBackInHistory(self):
+    def goBackInHistory(self) -> None:
         if len(self.historyArray) == 0:
             self.lineEdit.setText('')
         else:
             toSet = self.historyArray.pop()
             self.lineEdit.setText(toSet)
 
-    def solve(self):
+    def solve(self) -> None:
         q = self.lineEdit.text()
-        a = str(eval(q))
+        try:
+            a = str(eval(q))
+        except Exception:
+            a = "Wrong expression"
         self.historyArray.append(q)
         self.lineEdit.setText(a)
+
+    def handlePercentage(self) -> None:
+        exp = self.lineEdit.text()
+        lenExp = len(exp)
+        self.lineEdit.setText(exp[:lenExp - 1] + '/100')
 
     def initUI(self) -> None:
         layout = QVBoxLayout()
@@ -87,6 +94,9 @@ class SimpleCalculator(QWidget):
 
         # Giving function to 'Go back button'.
         self.buttons[2][4].clicked.connect(lambda : self.goBackInHistory())
+
+        # Giving function for '%'.
+        self.buttons[3][2].clicked.connect(lambda : self.handlePercentage())
 
         # Giving function to '=' button
         self.buttons[3][4].clicked.connect(lambda : self.solve())
