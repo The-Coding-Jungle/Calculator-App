@@ -10,14 +10,14 @@ from typing import List
 BUTTONS = [
     ['7', '8', '9', '/', '+', 'C'],
     ['4', '5', '6', '(', ')', 'Go Back'],
-    ['1', '2', '3', '-', 'x^2', '|x|'],
+    ['1', '2', '3', '-', '*', '|x|'],
     ['0', '.', '%', 'x^y', 'x^(1/2)', '=']
 ]
 
 IS_SPECIAL_BUTTON = [
     [False, False, False, False, False, True],
     [False, False, False, False, False, True],
-    [False, False, False, False, True, True],
+    [False, False, False, False, False, True],
     [False, False, True, True, True, True]
 ]
 
@@ -85,9 +85,6 @@ class AdvancedCalculator(QWidget):
 
         # Giving function to 'Go Back' at 1, 5.
         self.buttons[1][5].clicked.connect(self.goBackInHistory)
-
-        # Giving function to square at 2, 4.
-        self.buttons[2][4].clicked.connect(lambda: self.lineEdit.setText(self.lineEdit.text() + "**2"))
 
         # Giving function to mod at 2, 5.
         self.buttons[2][5].clicked.connect(self.handleMod)
