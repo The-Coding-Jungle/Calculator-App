@@ -122,11 +122,11 @@ class MainWindow(QMainWindow):
 
         self.darkThemeItem = QAction(styleNames[1])
         self.themeMenu.addAction(self.darkThemeItem)
-        self.darkThemeItem.triggered.connect(lambda: self.changeStyle(self.lightThemeItem))
+        self.darkThemeItem.triggered.connect(lambda: self.changeStyle(self.darkThemeItem))
 
         self.lightThemeItem = QAction(styleNames[2])
         self.themeMenu.addAction(self.lightThemeItem)
-        self.lightThemeItem.triggered.connect(lambda: self.changeStyle(self.darkThemeItem))
+        self.lightThemeItem.triggered.connect(lambda: self.changeStyle(self.lightThemeItem))
 
 class CalculatorApp(QApplication):
     def __init__(self) -> None:
